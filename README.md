@@ -7,3 +7,5 @@ this is an AI expence tracker built with AI automation using n8n
 4) No duplicate accounts and no duplicate data.
 5) Each user's data will be updated and calculated immediately.
 
+
+![AI expence tracker](https://github.com/user-attachments/assets/6a18df0d-b6cf-4d1b-b4b6-11847c7f1141)
