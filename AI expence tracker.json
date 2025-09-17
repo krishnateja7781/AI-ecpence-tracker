@@ -1,0 +1,1785 @@
+{
+  "name": "AI expence tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -16,
+        32
+      ],
+      "id": "39558d3d-d7c8-4cfa-9c59-92be7869f8cf",
+      "name": "Telegram Trigger",
+      "webhookId": "a3d15021-483d-4d58-a8e1-5ee421270cb8",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q",
+          "mode": "list",
+          "cachedResultName": "my trail 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "expense tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $('create account').item.json.data.name }}",
+            "mail id": "={{ $('create account').item.json.data['mail id'] }}",
+            "password": "={{ $('create account').item.json.data.password }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mail id",
+              "displayName": "mail id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "password",
+              "displayName": "password",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "deposit amount",
+              "displayName": "deposit amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "expense data",
+              "displayName": "expense data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "balence",
+              "displayName": "balence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1232,
+        -176
+      ],
+      "id": "9b083518-dac0-4083-8452-f066e13ea6c7",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nWZNW1qKO3DaVDxs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b0f60b98-f393-44eb-86d4-b4f180202b16",
+              "leftValue": "={{ $('create account').item.json.data['mail id'] }}",
+              "rightValue": "={{ $json['mail id'] }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        992,
+        -160
+      ],
+      "id": "63575280-1a34-4d48-8784-c6593d3d864b",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q",
+          "mode": "list",
+          "cachedResultName": "my trail 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "expense tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        784,
+        -160
+      ],
+      "id": "262926b7-aa43-406f-ace5-2fa588220487",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nWZNW1qKO3DaVDxs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q",
+          "mode": "list",
+          "cachedResultName": "my trail 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "expense tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $('create account').item.json.data.name }}",
+            "mail id": "={{ $('create account').item.json.data['mail id'] }}",
+            "password": "={{ $('create account').item.json.data.password }}",
+            "deposit amount": "={{ $json.data.text }}"
+          },
+          "matchingColumns": [
+            "mail id"
+          ],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "mail id",
+              "displayName": "mail id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "password",
+              "displayName": "password",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "deposit amount",
+              "displayName": "deposit amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "expense data",
+              "displayName": "expense data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "balence",
+              "displayName": "balence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1664,
+        -176
+      ],
+      "id": "25e1743c-f62e-4887-a64a-a92fb6a2ee8c",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nWZNW1qKO3DaVDxs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "={{ $json.message.chat.id }}",
+        "message": "=Hey..!!\n\nare you a new user...?\n\n        (please answer yes OR no)...",
+        "responseType": "freeText",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        192,
+        32
+      ],
+      "id": "7dfb215e-e86b-4ee8-849f-ce94bf706996",
+      "name": "new user..?",
+      "webhookId": "05d2634a-ac67-4e74-9bf6-ae0172d6001d",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.text }}",
+                    "rightValue": "yes",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "12a99695-4400-48c8-9f40-c0ae8aa8b591"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "acb85cc8-6c59-42f6-a034-9e2db31411f1",
+                    "leftValue": "={{ $json.data.text }}",
+                    "rightValue": "no",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        400,
+        32
+      ],
+      "id": "f9f3cafa-9660-40a3-bcc3-4d38bbe22d52",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "message": "=please fill your details in the below form...\n\n\"make sure the details are correct and cannot change them later...\"",
+        "responseType": "customForm",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "mail id",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "password",
+              "fieldType": "password"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        -160
+      ],
+      "id": "ca153612-e1a6-4ada-bb33-1df2934c24ae",
+      "name": "create account",
+      "webhookId": "47b7e67b-b747-47d1-9d34-06a8168b7a4e",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "=2138983333",
+        "message": "=please login to your account by entering your mail id and password...",
+        "responseType": "customForm",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "mail id",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "password",
+              "fieldType": "password"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        592,
+        128
+      ],
+      "id": "ceafc53f-b093-4807-8af5-9b327941b1c0",
+      "name": "Send message and wait for response",
+      "webhookId": "3a33133a-6be1-42a6-8079-3669b88b5a9f",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=user details : {{ $('Send message and wait for response').item.json.data['mail id'] }}\npassword : {{ $('Send message and wait for response').item.json.data.password }}\nexpense name : {{ $json.data['expence name'] }}\ndate and time : {{ $json.data['expence date and time'] }}\nexpense amount : {{ $json.data['expence amount '] }}\n\nprevious expence data : (get it from the google sheets tool connected to this agent)\n\nyou are a perfect expence tracker agent where you can filter all the expences according to date and time where you will get the input from the user about his particular expense on the particular event.\n\nnow you have to add the the this in the expense data in the format :\n\nexpense name : ---  , expense date and time : --- , expense amount : --- .\n\nso this will be the new expense data from the user and you have to store this data along with previous data like :\n\n1) expense name : ---  , expense date and time : --- , expense amount : --- .\n2) expense name : ---  , expense date and time : --- , expense amount : --- .\n3) expense name : ---  , expense date and time : --- , expense amount : --- .\n\nand so on as how much data is there you have to set this data in this format.and make sure you have to merge the data which you got from \"previous expence data : --- \" and the new expence \n\ngive em only the text required, and dont output any other text except the required format text.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        2176,
+        -144
+      ],
+      "id": "e499f14c-86c7-4100-8b34-20d847c4adba",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2112,
+        0
+      ],
+      "id": "daf673c3-62ac-4d61-8b1e-b77df08276bd",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "D70jzveGVYVaig5a",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output }}\n\ndeposit amount : (get it from the google sheets tool connected to this agent)\n\nyou are an excellent expence tracker where you can filter all the  expences in a clear date and time format like :\n   example :\nuser name : (name)\nmail id : (mail id of the user)\npassword : (user's password)\ndeposit amount : (user's deposited amount)\nexpence data :(output in the given below format)\ndate : ---\n1)expence name :-- , time : -- , amount : --,\n2)expence name :-- , time : -- , amount : --,\n3)expence name :-- , time : -- , amount : --,\n       total expence : (add all the expences on that particular data)\n\ndate : ---\n1)expence name :-- , time : -- , amount : --,\n2)expence name :-- , time : -- , amount : --,\n3)expence name :-- , time : -- , amount : --,\n       total expence : (add all the expences on that particular data)\n\nand so on as how much the input data is filter all those and calculate the balence as the user deposited the amount and remaining amount after all the expences and output the balence as :\nbalence : ---\n\ngive em only the text required, and dont output any other text except the required format text.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        2496,
+        -144
+      ],
+      "id": "82eeb2ac-2f67-48c4-bfed-2ebae48a1eb2",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2496,
+        16
+      ],
+      "id": "2ee9802a-92f0-4302-9de7-a9bd02ac9abe",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "D70jzveGVYVaig5a",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const output = $input.first().json.output;\n\n// Split into lines\nconst lines = output.split(\"\\n\");\n\n// Extract main fields\nlet userName = null;\nlet mailId = null;\nlet password = null;\nlet deposit = null;\nlet balance = null;\n\n// Collect expense data lines\nlet expenseData = [];\nlet expenseSection = false;\n\nfor (let line of lines) {\n  const lower = line.toLowerCase().trim();\n\n  if (lower.startsWith(\"user name\")) {\n    userName = line.split(\":\")[1].trim();\n  } else if (lower.startsWith(\"mail id\")) {\n    mailId = line.split(\":\")[1].trim();\n  } else if (lower.startsWith(\"password\")) {\n    password = line.split(\":\")[1].trim();\n  } else if (lower.startsWith(\"deposit amount\")) {\n    deposit = Number(line.split(\":\")[1].trim());\n  } else if (lower.startsWith(\"expence data\")) {\n    expenseSection = true;\n  } else if (lower.startsWith(\"balence\") || lower.startsWith(\"balance\")) {\n    balance = Number(line.split(\":\")[1].trim());\n    expenseSection = false; // stop collecting expense data\n  } else if (expenseSection) {\n    expenseData.push(line);\n  }\n}\n\n// Final structured result\nconst result = {\n  userName,\n  mailId,\n  password,\n  deposit,\n  expenseData: expenseData.join(\"\\n\").trim(),\n  balance\n};\n\nreturn result;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2832,
+        -144
+      ],
+      "id": "c568ff8c-c4f2-4804-9a7e-2283ee1dbb2a",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q",
+          "mode": "list",
+          "cachedResultName": "my trail 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "expense tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json.userName }}",
+            "mail id": "={{ $json.mailId }}",
+            "password": "={{ $json.password }}",
+            "deposit amount": "={{ $json.deposit }}",
+            "expense data": "={{ $json.expenseData }}",
+            "balence": "={{ $json.balance }}"
+          },
+          "matchingColumns": [
+            "mail id"
+          ],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mail id",
+              "displayName": "mail id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "password",
+              "displayName": "password",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "deposit amount",
+              "displayName": "deposit amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "expense data",
+              "displayName": "expense data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "balence",
+              "displayName": "balence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        3040,
+        -144
+      ],
+      "id": "85cc455a-6819-4b10-87bb-5abcf83c8e31",
+      "name": "Append or update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nWZNW1qKO3DaVDxs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=mail id : {{ $json.data['mail id'] }}\n\npassword : {{ $json.data.password }}\n\nyou are an excellent ai agent in verifying the email id and password of the user given as input to login. you need to check them using the data present in google sheets just the user's mail and password are correct or not.\n\nif the mail id and password are correct then output in the below format : \n\n\"Welcome back (name of user(take the name from google sheets of that particular mail id)) you logged in successfully...\n\n\nif the mail id and password are not correct then output in the below format : \n\n\"  error..!!\ndear user your mail id or password are wrong please re-enter them \"\n\noutput only the requested details and formats, and dont output any other text except the required output.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        128
+      ],
+      "id": "af2d403f-c616-4d2f-a6b0-e236e0185f50",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        736,
+        320
+      ],
+      "id": "7b967570-8c0d-45de-a56f-899f5350d062",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "D70jzveGVYVaig5a",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q",
+          "mode": "list",
+          "cachedResultName": "my trail 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "expense tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        912,
+        336
+      ],
+      "id": "d841fca1-f856-4cf2-bbf0-d307c63c0857",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nWZNW1qKO3DaVDxs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ef0ced3a-28d6-4577-9f83-1082875e5f9a",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "error..!!",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1040,
+        128
+      ],
+      "id": "d5e21ac9-f44d-4a4c-a93b-daf2f26b3cdb",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "message": "={{ $json.output }}\n\nchoose one :\n\n1) add expence\n\n2) summarise your expence",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "approveLabel": "add expence",
+            "disapproveLabel": "summarise your expence"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1232,
+        32
+      ],
+      "id": "7e229003-0304-4296-a96b-b11d6a9875f3",
+      "name": "login success",
+      "webhookId": "fbd1256b-3ca2-4772-ae89-dd1c6262871d",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "2138983333",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1232,
+        224
+      ],
+      "id": "5c2a6109-41b4-4375-a6b2-24d7bba71384",
+      "name": "invalid mail or password",
+      "webhookId": "9f868d8b-15c7-4e27-bf39-5cb6a329b6d8",
+      "executeOnce": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "message": "=add your expense in the below format :\n\nexpense name : --\n\nexpense date and time : --\n\nexpense amount : -- ",
+        "responseType": "customForm",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "expence name"
+            },
+            {
+              "fieldLabel": "expence date and time"
+            },
+            {
+              "fieldLabel": "expence amount "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1808,
+        16
+      ],
+      "id": "864b21f1-cf70-48c8-9d47-825c87b3b2a9",
+      "name": "Send message and wait for response1",
+      "webhookId": "cbdac7f8-b0da-4129-8134-bb613d59082a",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=summarise status : {{ $json.data.approved }}\n\nyou are an excellent summariser where you need to summarise the expences requested by the user\n\n1) if you get the input as \"true\" then it means summarise all the data \n\n2) if you get the input as \"false\" then it means you have to summarise the expences from particular date to particular date\n\n\nif user requests to \"summarise all the expences\" then summarise all expences in the filter format :\n\n\"date : --\n1)expence name : -- , expence time : (only time) , expence amount : --\n2)expence name : -- , expence time : (only time) , expence amount : --\ntotal expence : --\n\ndate : --\n1)expence name : -- , expence time : (only time) , expence amount : --\n2)expence name : -- , expence time : (only time) , expence amount : --\ntotal expence : -- \"\n\nif the user needs the summary of expence from particular date to particular date, then filter all the expences which are in that requested date periods in the below format :\n\n\"date : --\n1)expence name : -- , expence time : (only time) , expence amount : --\n2)expence name : -- , expence time : (only time) , expence amount : --\ntotal expence : --\n\ndate : --\n1)expence name : -- , expence time : (only time) , expence amount : --\n2)expence name : -- , expence time :(only time), expence amount : --\ntotal expence : -- \"\n\nand at last let the user know their current balence :\ncurrent balence : (after all the expences print the remaining balence).",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        2048,
+        176
+      ],
+      "id": "36951224-ca2c-4f74-9e77-7c648b90aac5",
+      "name": "AI Agent3"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        336
+      ],
+      "id": "2c65bf99-05e2-49c2-ad2a-001a51ab7fc8",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "D70jzveGVYVaig5a",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q",
+          "mode": "list",
+          "cachedResultName": "my trail 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "expense tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        2224,
+        352
+      ],
+      "id": "3e122466-8de3-44f6-8be0-ed04dc0cb50d",
+      "name": "Get row(s) in sheet in Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nWZNW1qKO3DaVDxs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "2138983333",
+        "message": "=please select the summarise dates :\n\n1) summarise all\n\n2) summarise custom dates",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "approveLabel": "summarise all",
+            "disapproveLabel": "summarise custom dates"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1552,
+        224
+      ],
+      "id": "51e91347-428e-4850-9d76-367f9adb0d0f",
+      "name": "Send message and wait for response3",
+      "webhookId": "9f8a82a3-401a-4a69-b0f4-23f068aa0ae1",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "= summarise status : {{ $('summarise all or filter').item.json.data.approved }}\n\nsummarise from : {{ $json.data['from '] }} to : {{ $json.data.to }}\n\nyou are an excellent summariser where you need to summarise the expences requested by the user\n\n1) if you get the input as \"true\" then it means summarise all the data \n\n2) if you get the input as \"false\" then it means you have to summarise the expences from particular date to particular date\n\n\nif user requests to \"summarise all the expences\" then summarise all expences in the filter format :\n\n\"date : --\n1)expence name : -- , expence time : (only time) , expence amount : --\n2)expence name : -- , expence time : (only time) , expence amount : --\ntotal expence : --\n\ndate : --\n1)expence name : -- , expence time : (only time) , expence amount : --\n2)expence name : -- , expence time : (only time) , expence amount : --\ntotal expence : -- \"\n\nif the user needs the summary of expence from particular date to particular date, then filter all the expences which are in that requested date periods in the below format :\n\n\"date : --\n1)expence name : -- , expence time : (only time) , expence amount : --\n2)expence name : -- , expence time : (only time) , expence amount : --\ntotal expence : --\n\ndate : --\n1)expence name : -- , expence time : (only time) , expence amount : --\n2)expence name : -- , expence time :(only time), expence amount : --\ntotal expence : -- \"\n\nand at last let the user know their current balence :\nremaining deposit : (after all the expences print the remaining balence).",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        2112,
+        464
+      ],
+      "id": "0b6217b1-97fd-4705-bb82-8976c6aaee92",
+      "name": "AI Agent4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2112,
+        624
+      ],
+      "id": "075f5480-449e-46af-9ca5-8f38a525a8e7",
+      "name": "Google Gemini Chat Model4",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "D70jzveGVYVaig5a",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q",
+          "mode": "list",
+          "cachedResultName": "my trail 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "expense tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        2304,
+        640
+      ],
+      "id": "c62bc8b8-f145-4cc0-90c8-35f60b6260e1",
+      "name": "Get row(s) in sheet in Google Sheets2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nWZNW1qKO3DaVDxs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=your expences details from : {{ $('select dates for summary').item.json.data['from '] }} , to {{ $('select dates for summary').item.json.data.to }} are here :\n\n{{ $json.output }}\n\n               thank you..!!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2464,
+        464
+      ],
+      "id": "b2f45a15-19c8-44f5-bf60-e253824674a1",
+      "name": "Send a text message1",
+      "webhookId": "4c173414-98c9-4787-be96-93d263efc261",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "f5926b48-38c3-4ae4-b320-514c9a003865"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "add expence"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8da3bde1-b0e8-4c09-929e-a25817068b3a",
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "summarise output"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1440,
+        32
+      ],
+      "id": "38c650e6-c9cd-4165-a8c1-1ef2693cd956",
+      "name": "add expence or summary"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "213fd665-bfab-4324-9631-a08d9e5bf8a3",
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "summarise all"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "870846f9-75ae-463e-8f62-de10600fede3",
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "summarise custom dates"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1760,
+        224
+      ],
+      "id": "cbaa4067-1b0e-4c5d-a04c-1fd0b25bc396",
+      "name": "summarise all or filter"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "2138983333",
+        "message": "=please specify your dates clearly..!!",
+        "responseType": "customForm",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "from ",
+              "fieldType": "date",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "to",
+              "fieldType": "date"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1904,
+        464
+      ],
+      "id": "9bbfe0e3-6c30-41b3-9e97-e5189d4040e6",
+      "name": "select dates for summary",
+      "webhookId": "50b4131d-f36e-42e3-8b21-ed2746b6f6e8",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=here are your total summary of your expences :\n\n{{ $json.output }}\n\n              thank you..!!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2448,
+        224
+      ],
+      "id": "71efcf5d-2f35-417a-a18d-1b345e6c3272",
+      "name": "Send a text message2",
+      "webhookId": "9b9ed374-08cc-4b4a-9ba1-88154dfb1624",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q",
+          "mode": "list",
+          "cachedResultName": "my trail 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "expense tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        2256,
+        32
+      ],
+      "id": "5e252f25-9d5e-48d9-b7c3-d12b538e4036",
+      "name": "Get row(s) in sheet in Google Sheets3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nWZNW1qKO3DaVDxs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q",
+          "mode": "list",
+          "cachedResultName": "my trail 3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "expense tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-65mwD2EEmA-qmkddUb6-s6wuE9bSdWLKZ3-YBIQS9Q/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        2720,
+        64
+      ],
+      "id": "943f0bfb-176a-489e-8895-1903c714b4b4",
+      "name": "Get row(s) in sheet in Google Sheets4",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nWZNW1qKO3DaVDxs",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=great job...\n\nyour account is created successfully..\n\nhere are your detils : \n\nname : {{ $json.name }}\n\nmail id : {{ $json['mail id'] }}\n\ndeposit amount : {{ $json['deposit amount'] }}\n\nexpense your amount in the right way and try to save them...\n\n               thank you...!!!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1872,
+        -176
+      ],
+      "id": "7749185a-cc1f-49f2-b282-adba348fa36b",
+      "name": "account created",
+      "webhookId": "c59449fb-d83b-4ec0-84a6-ffaca605ae89",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "message": "=dear {{ $('create account').item.json.data.name }}...,\n\nplease enter your deposit amount of this month...",
+        "responseType": "freeText",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1440,
+        -176
+      ],
+      "id": "e347843c-ff47-42f1-89fe-a302694adeb4",
+      "name": "enter deposit",
+      "webhookId": "abf6f08b-150b-4e96-bd95-2a586de7ce54",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=your expence added successfully...\n\n               thank you..!!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3216,
+        -144
+      ],
+      "id": "6f410114-90eb-4f5d-b3be-c5d0900a26bf",
+      "name": "Send a text message",
+      "webhookId": "cf61961c-c54d-44df-92de-1e510b2ddda1",
+      "credentials": {
+        "telegramApi": {
+          "id": "8BTuwIyXSSCMgujp",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "new user..?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "enter deposit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "account created",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "new user..?": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "create account",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send message and wait for response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create account": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message and wait for response": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "login success",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "invalid mail or password",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "login success": {
+      "main": [
+        [
+          {
+            "node": "add expence or summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "invalid mail or password": {
+      "main": [
+        []
+      ]
+    },
+    "Send message and wait for response1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message and wait for response3": {
+      "main": [
+        [
+          {
+            "node": "summarise all or filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent4": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "add expence or summary": {
+      "main": [
+        [
+          {
+            "node": "Send message and wait for response1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send message and wait for response3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "summarise all or filter": {
+      "main": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "select dates for summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select dates for summary": {
+      "main": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets3": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets4": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "enter deposit": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "824ff1f0-1d14-490e-b323-8f43e7f939d9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7a0722219200d3d3e7ce7bcd8bad2afeb6d0e03e0e44489fb43497e0af6de8f4"
+  },
+  "id": "7a2SDc4Mnye9j31c",
+  "tags": [
+    {
+      "name": "AI expence tracker",
+      "id": "uDt3iQKZ7qi5QqIN",
+      "createdAt": "2025-09-17T11:13:29.580Z",
+      "updatedAt": "2025-09-17T11:13:29.580Z"
+    }
+  ]
+}
