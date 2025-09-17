@@ -1,4 +1,4 @@
-# AI-ecpence-tracker
+# AI-expence-tracker
 this is an AI expence tracker built with AI automation using n8n 
 
 1) This AI automation can be used to track your daily expences on what you spent and can have a great management on expene in their total budget.
